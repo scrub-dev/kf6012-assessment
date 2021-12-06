@@ -47,6 +47,9 @@ EOT;
     protected function add_heading1($x, $style){
         $this->append_body("<h1 class=$style>$x</h1>");
     }
+    protected function add_heading2($x, $style){
+        $this->append_body("<h2 class=$style>$x</h2>");
+    }
     protected function add_paragraph($x, $style){
         $this->append_body("<p class=$style>$x</p>");
     }

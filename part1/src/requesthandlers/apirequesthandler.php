@@ -7,6 +7,8 @@ namespace Src\RequestHandlers;
  */
 abstract class ApiRequestHandler extends RequestHandler {
     protected function parse($request){
-
+        switch($request->get_api_path()){
+            
+        }
     }
 }

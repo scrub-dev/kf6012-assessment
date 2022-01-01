@@ -25,7 +25,7 @@ class Request{
         return $this->path;
     }
     public function get_api_path(){
-        return trim(preg_replace("/^api/", "", $this->get_path()), "");
+        return trim(preg_replace("/^api/","",$this->get_path()), "/");
     }
     public function is_api(){
         return preg_match("/api.*/", $this->path);

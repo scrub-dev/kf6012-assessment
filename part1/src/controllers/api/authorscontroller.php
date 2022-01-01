@@ -10,9 +10,7 @@ class AuthorsController extends Controller{
     }
     protected function process_request(){
         if($this->get_request()->get_request_method() !== "GET") {
-            $this->get_response()->set_message("Method Not Allowed");
-            $this->get_response()->set_status_code(405);
-            return $this->get_response();
+            $this->send_method_not_allowed();
         }
 
         $id = $this->get_request()->get_parameter("id");
@@ -21,9 +19,7 @@ class AuthorsController extends Controller{
         else if($this->get_gateway()->does_id_exist($id)){
             $this->get_gateway()->find_one($id);
         }else{
-            $this->get_response()->set_message("Bad Request");
-            $this->get_response()->set_status_code(400);
-            return $this->get_response();
+            $this->send_bad_request();
         }
         
         return $this->get_gateway()->get_result();

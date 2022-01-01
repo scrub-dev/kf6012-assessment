@@ -38,4 +38,14 @@ abstract class Controller{
     protected function process_request(){
 
     }
+    protected function send_bad_request(){
+        $this->get_response()->set_message("Bad Request");
+        $this->get_response()->set_status_code(400);
+        return $this->get_response();
+    }
+    protected function send_method_not_allowed(){
+        $this->get_response()->set_message("Method Not Allowed");
+        $this->get_response()->set_status_code(405);
+        return $this->get_response();
+    }
 }

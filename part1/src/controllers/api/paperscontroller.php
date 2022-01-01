@@ -10,9 +10,7 @@ class PapersController extends Controller{
     }
     protected function process_request(){
         if($this->get_request()->get_request_method() !== "GET") {
-            $this->get_response()->set_message("Method Not Allowed");
-            $this->get_response()->set_status_code(405);
-            return $this->get_response();
+            $this->send_method_not_allowed();
         }
         $arr = $this->parameters_to_array();
         switch($this->parse_parameters($arr)){
@@ -39,9 +37,11 @@ class PapersController extends Controller{
         $author_id = $arr["author_id"];
 
         if(!is_null($id) && !$this->get_gateway()->does_id_exist()){
-            $this->get_response()->set_message("Bad Request");
-            $this->get_response()->set_status_code(400);
-            return $this->get_response();
+            $this->send_bad_request();
+        }
+
+        if(!is_null($award) && $award !== "all"){
+            $this->send_bad_request();
         }
 
         if(is_null($id) && is_null($award) && is_null($author_id)) return 'get_all';

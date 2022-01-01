@@ -2,7 +2,6 @@
 namespace Src\RequestHandlers;
 
 use Src\Controllers\Api;
-use Src\Responses;
 
 /**
  * ApiRequestHandler gives routes for different API Endpoint requests
@@ -22,7 +21,10 @@ class ApiRequestHandler extends RequestHandler {
                 $controller = new Api\PapersController($request, $this->response);
                 break;
             case "authenticate":
+                $controller = new Api\AuthenticationController($request, $this->response);
                 break;
+            case "readinglist":
+                $controller = new Api\ReadinglistController($request, $this->response);
         }
     }
 }

@@ -1,10 +1,11 @@
 <?php
 namespace Config\Handlers;
+use Config\Handlers\Handler;
 /**
  * Handler for Exceptions when output is JSON
  * @author Scott Donaldson 19019810
  */
-abstract class JSONExceptionHandler extends Handler {
+class JSONExceptionHandler extends Handler {
     public function handle($e){
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");

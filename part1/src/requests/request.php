@@ -37,6 +37,9 @@ class Request{
         return $this->request_method;
     }
     public function get_parameter($param){
-        return filter_input(($this->get_request_method == "GET") ? INPUT_GET : INPUT_POST, $param, FILTER_SANITIZE_SPECIAL_CHARS);
+        $rm = $this->get_request_method();
+        if($rm === "GET") $res = filter_input(INPUT_GET, $param, FILTER_SANITIZE_SPECIAL_CHARS);
+        if($rm === "POST") $res = filter_input(INPUT_POST, $param, FILTER_SANITIZE_SPECIAL_CHARS);
+        return $res;
     }
 }

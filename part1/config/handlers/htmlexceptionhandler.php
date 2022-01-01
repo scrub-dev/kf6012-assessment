@@ -4,7 +4,7 @@ namespace Config\Handlers;
  * Class for handling exceptions where HTML expected
  * @author Scott Donaldson 19019810
  */
-abstract class HTMLExceptionHandler extends Handler {
+class HTMLExceptionHandler extends Handler {
     public function handle($e){
         $output = "<h1>Internal Server Error!</h1><br><h2>Status Code: 500</h2>";
         
@@ -14,7 +14,6 @@ abstract class HTMLExceptionHandler extends Handler {
             $output .= "<br>Line: " . $e->getLine();
             $output .= "<br>Stacktrace: " . $e->getTraceAsString();
         }
-
-        echo $output;
+        header('Location: ' . BASEPATH . "error?code=500&message=" . urlencode($output));
     }
 }

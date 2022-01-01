@@ -1,26 +1,26 @@
 <?php
 namespace Src\RequestHandlers;
 
-use Src\Webpages;
 use Src\Responses;
+use Src\Controllers\HTML;
 
 /**
  * HTMl Request Handler for endpoints where a HTML Reponse is excpected
  * @author Scott Donaldson 19019810
  */
-abstract class HtmlRequestHandler extends RequestHandler {
+class HtmlRequestHandler extends RequestHandler {
     protected function parse($request){
-        $response = new Responses\HtmlResponse();
         switch($request->get_path()){
             default:
+                header('Location: ' . BASEPATH . "error?code=404&message=Page%20not%20found");
             case "home":
-                $controller = new Controllers\Html\HomeController($request, $response);
+                $controller = new HTML\HomepageController($request, $this->response);
                 break;
             case "documentation":
-                $contoller = new Controllers\Html\DocumentationController($request, $response);
+                $contoller = new HTML\DocumentationController($request, $this->response);
                 break;
             case "error":
-                $controller = new Controllers\Html\ErrorController($request,$response);
+                $controller = new HTML\ErrorController($request,$this->response);
         }
     }
 }

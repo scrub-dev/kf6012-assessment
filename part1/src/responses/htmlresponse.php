@@ -4,7 +4,7 @@ namespace Src\Responses;
 /**
  * @author Scott Donaldson 19019810
  */
-abstract class HtmlResponse extends Response{
+class HtmlResponse extends Response{
     protected function headers(){
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: text/html; charset=UTF-8");

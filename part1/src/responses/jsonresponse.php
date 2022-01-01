@@ -4,7 +4,7 @@ namespace Src\Responses;
 /**
  * @author Scott Donaldson 19019810
  */
-abstract class JsonResponse extends Response{
+class JsonResponse extends Response{
 
     private $message;
     private $status_code;
@@ -22,7 +22,7 @@ abstract class JsonResponse extends Response{
     public function get_data(){
         if(is_null($this->message)){
             if(count($this->data) == 0){
-                $this->message = "No Contnt";
+                $this->message = "No Content";
                 $this->status_code = 204;
             }else{
                 $this->message = "Ok";
@@ -33,14 +33,14 @@ abstract class JsonResponse extends Response{
         if($this->status_code == 200){
             $res = Array(
                 "message" => $this->message,
-                "status" => $this->statusCode,
+                "status" => $this->status_code,
                 "count" => count($this->data),
                 "timestamp" => date("Y-m-d-H:i:s"),
                 "results" => $this->data
             );
         }else{
             $res = Array(
-                "status" => $this->statusCode,
+                "status" => $this->status_code,
                 "message" => $this->message,
                 "timestamp" => date("Y-m-d-H:i:s"),
                 "path" => strtok($_SERVER['REQUEST_URI'], '?')

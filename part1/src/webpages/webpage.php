@@ -44,6 +44,9 @@ EOT;
     protected function append_body($x){
         $this->body .= $x;
     }
+    protected function get_body(){
+        return $this->body;
+    }
     protected function add_heading1($x, $style){
         $this->append_body("<h1 class=$style>$x</h1>");
     }
@@ -77,6 +80,6 @@ EOT;
         $this->append_body($temp);
     }
     public function generate_webpage(){
-        return $this->head . $this->body . $this->foot;
+        return $this->get_head() . $this->get_body() . $this->get_foot();
     }
 }

@@ -1,14 +1,16 @@
 <?php
 namespace Src\Gateways;
 
-use Src\Database\Database;
 use Src\Gateways\Gateway as Gateway;
-
+/**
+ * Authentication Gateway
+ * @author: Scott Donaldson 19019810
+ */
 class ReadinglistGateway extends Gateway{
     public function __construct(){
         $this->set_database(USER_DATABASE);
     }
-    public function findAll($uid){
+    public function find_all($uid){
         $sql = "SELECT DISTINCT film_id FROM list WHERE user_id = :uid";
         $params = [":uid" => $uid];
         $this->set_result($this->get_database()->execute_sql($sql, $params));

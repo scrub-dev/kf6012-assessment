@@ -1,6 +1,6 @@
 <?php
 /**
- * Autoloader
+ * Autoloader adapted to use namespaces
  */
 function autoloader($classname){
     $fn = strtolower($classname) . ".php";

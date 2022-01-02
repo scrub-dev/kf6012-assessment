@@ -4,7 +4,12 @@ namespace Src\Controllers\Api;
 use Src\Controllers\Controller;
 use Src\Firebase\JWT\JWT;
 use Src\Gateways\AuthenticationGateway;
-
+/**
+ * Authentication Controller
+ * Accepts: POST
+ * Params: email, password
+ * @author: Scott Donaldson 19019810
+ */
 class AuthenticationController extends Controller{
     protected function set_gateway(){
       $this->gateway = new AuthenticationGateway();

@@ -3,7 +3,12 @@ namespace Src\Controllers\Api;
 
 use Src\Controllers\Controller;
 use Src\Gateways\AuthorsGateway;
-
+/**
+ * Authors Controller
+ * Accepts: GET
+ * Params: id
+ * @author: Scott Donaldson 19019810
+ */
 class AuthorsController extends Controller{
     protected function set_gateway(){
         $this->gateway = new AuthorsGateway();

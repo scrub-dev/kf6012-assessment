@@ -1,7 +1,12 @@
 <?php
 
 namespace Src\Controllers;
-
+/**
+ * Abstract Controller
+ * Accepts: n/a
+ * Params: n/a
+ * @author: Scott Donaldson 19019810
+ */
 abstract class Controller{
     
     private $request;
@@ -50,7 +55,7 @@ abstract class Controller{
     }
     protected function send_unauthorised(){
         $this->get_response()->set_message("Unauthorized");
-        $this->get_response()->set_message(401);
+        $this->get_response()->set_status_code(401);
         return $this->get_response();
     }
 }

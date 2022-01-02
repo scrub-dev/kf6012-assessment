@@ -2,7 +2,12 @@
 namespace Src\Controllers\Api;
 
 use Src\Controllers\Controller;
-
+/**
+ * Default Controller
+ * Accepts: GET/POST
+ * Params: n/a
+ * @author: Scott Donaldson 19019810
+ */
 class DefaultController extends Controller{
     protected function process_request(){
         $data['author']['name'] = "Scott Donaldson";

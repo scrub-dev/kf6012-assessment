@@ -1,7 +1,10 @@
 <?php
 namespace Src\Gateways;
 use Src\Database\Database;
-
+/**
+ * Gateway
+ * @author: Scott Donaldson 19019810
+ */
 abstract class Gateway {
     private $database;
     private $result;

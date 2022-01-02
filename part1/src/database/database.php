@@ -2,7 +2,9 @@
 namespace Src\Database;
 use PDO;
 /**
- * @author Scott Donaldson 19019810
+ * Database
+ * Creates Connection to database
+ * @author: Scott Donaldson 19019810
  */
 class Database {
 

@@ -4,7 +4,9 @@ namespace Src\Database;
 use PDO;
 
 /**
- * @author Scott Donaldson 19019810
+ * Connection
+ * Handles a connection to an SQLite Database
+ * @author: Scott Donaldson 19019810
  */
 class Connection {
     private $connection;

@@ -3,7 +3,12 @@ namespace Src\Controllers\Api;
 
 use Src\Controllers\Controller;
 use Src\Gateways\PapersGateway;
-
+/**
+ * Papers Controller
+ * Accepts: GET
+ * Params: authorid, award, id
+ * @author: Scott Donaldson 19019810
+ */
 class PapersController extends Controller{
     protected function set_gateway(){
       $this->gateway = new PapersGateway();

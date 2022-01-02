@@ -22,7 +22,7 @@ class PapersController extends Controller{
                 $this->get_gateway()->find_by_author($arr['author_id']);
                 break;
             case 'get_all_with_award':
-                $this->get_gateway()->find_by_award();
+                $this->get_gateway()->find_by_award($arr['award']);
                 break;
             case 'get_by_paper_id':
                 $this->get_gateway()->find_by_id($arr['id']);

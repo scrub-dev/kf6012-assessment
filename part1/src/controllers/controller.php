@@ -48,4 +48,9 @@ abstract class Controller{
         $this->get_response()->set_status_code(405);
         return $this->get_response();
     }
+    protected function send_unauthorised(){
+        $this->get_response()->set_message("Unauthorized");
+        $this->get_response()->set_message(401);
+        return $this->get_response();
+    }
 }

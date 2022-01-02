@@ -9,7 +9,7 @@ class PapersGateway extends Gateway{
     JOIN paper_author ON (paper_author.paper_id = paper.paper_id)
     JOIN author ON (author.author_id = paper_author.author_id)
     LEFT JOIN award ON (award.paper_id = paper.paper_id)
-    LEFT JOIN award_type ON (award_type.award_type_id = award.award_type_id)";
+    LEFT JOIN award_type ON (award_type.award_type_id = award.award_type_id) ";
 
     private $database;
     public function __construct(){
@@ -65,15 +65,14 @@ class PapersGateway extends Gateway{
     }
 
     public function find_by_award($award){
-        if($award === "all"){
+        if($award !== "all"){
             $this->sql .= "WHERE award.award_type_id = :id";
             $params = [":id" => $award];
             $res = $this->database->execute_sql($this->sql, $params);
             $this->set_result($res);
         }else{
             $this->sql .= "WHERE award.award_type_id IS NOT NULL";
-            $params = [":id" => $award];
-            $res = $this->database->execute_sql($this->sql, $params);
+            $res = $this->database->execute_sql($this->sql);
             $this->set_result($res);
         }
     }

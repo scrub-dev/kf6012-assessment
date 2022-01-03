@@ -10,6 +10,7 @@ class DocumentationPage extends Webpage {
         $this->set_foot();
         $this->add_navbar(["Home" => BASEPATH ."home", "Documentation" => BASEPATH ."documentation"]);
         $this->add_heading1("Documentation", "accent-underline");
+        $this->add_paragraph("Please read below for all the available endpoints of the kf6012 API.", "");
         $this->add_link("Go to Home", BASEPATH ."home", "button-accent");
 
 

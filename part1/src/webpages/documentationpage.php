@@ -8,8 +8,10 @@ class DocumentationPage extends Webpage {
     public function __construct($title){
         $this->set_head($title);
         $this->set_foot();
-        $this->add_heading1("Documentation", "header");
-        $this->add_link("Home", BASEPATH ."home", "link");
+        $this->add_navbar(["Home" => BASEPATH ."home", "Documentation" => BASEPATH ."documentation"]);
+        $this->add_heading1("Documentation", "accent-underline");
+        $this->add_link("Go to Home", BASEPATH ."home", "button-accent");
+
 
         $authorendpoint = Array(
           'endpoint_name' => 'Authors',
@@ -58,7 +60,7 @@ class DocumentationPage extends Webpage {
     }
     private function generate_documentation_snub($array = []){
         $this->append_body("<div class='documentation_snub'>");
-        $this->add_heading2($array['endpoint_name'],"documentation_header");
+        $this->add_heading2($array['endpoint_name'],"accent-hover-underline");
         $this->add_link($array['full_url'], $array['full_url'], "full_url_link");
         $this->add_paragraph("Supported HTTP Methods: " . $array['supported_http_methods'], "docu_para");
         $this->add_paragraph("Supported Parameters: " . $array['supported_parameters'], "docu_para");

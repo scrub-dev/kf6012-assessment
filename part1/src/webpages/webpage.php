@@ -14,7 +14,8 @@ abstract class Webpage {
         $this->set_foot();
     }
     protected function set_head($title){
-        $stylesheet = BASEPATH . "assets/style.css";
+        $materialize_stylesheet = BASEPATH . "assets/css/materialize.min.css";
+        $stylesheet = BASEPATH . "assets/css/style.css";
         $this->head = <<<EOT
 <!DOCTYPE html>
 <html lang="en-gb">
@@ -22,12 +23,19 @@ abstract class Webpage {
         <title>$title</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href=$stylesheet>
-</head>
+        <link rel="stylesheet" href=$materialize_stylesheet>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <body>
 EOT;
     }
     protected function set_foot(){
+        $javascript = BASEPATH . "assets/js/materialize.min.js";
         $this->foot = <<<EOT
+        </div>
+        <footer>
+            <div class='container'></div>
+        </footer>
+    <script type="text/javascript" src="$javascript"></script>        
 </body>
 </html>
 EOT;
@@ -84,6 +92,28 @@ EOT;
         $temp .= "</table>";
 
         $this->append_body($temp);
+    }
+    protected function add_navbar($arr = []){
+        $navbar_links = "";
+        foreach($arr as $text => $link){
+            $navbar_links .= "<li><a href='$link'>$text</a></li>";
+        }
+        $navbar = <<< EOT
+        <nav>
+            <div class="nav-wrapper main-bg">
+                <div class='left brand-logo'>
+                    <a href="#" class='accent-underline slight-margin'>KF6012 Assessment</a>
+                </div>
+                <ul id="nav-mobile" class="right">
+EOT;
+        $navbar .= $navbar_links;
+        $navbar .= <<< EOT
+            </ul>
+        </div>
+    </nav>
+    <div class='container'>
+EOT;
+        $this->append_body($navbar);
     }
     public function generate_webpage(){
         return $this->get_head() . $this->get_body() . $this->get_foot();

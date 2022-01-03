@@ -1,0 +1,45 @@
+:root{
+  --accent: #E40066;
+  --accent-hover:#a8004c;
+  --main: #546e7a;
+  --main2: #cfd8dc;
+  --main3: #2b3033;
+}
+
+body {
+  background-color: var(--main2);
+}
+
+.main-bg {
+  background-color: var(--main);
+}
+
+.accent-underline {
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 3px;
+}
+.accent-hover-underline {
+  border-bottom: 2px solid var(--accent-hover);
+  padding-bottom: 3px;
+}
+
+.slight-margin {
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+}
+
+.button-accent {
+  padding: 0.2em;
+  background-color: var(--accent);
+  color: white;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  box-shadow: var(--main3) 0.3em 0.3em;
+  text-decoration: none;
+}
+.button-accent:hover {
+  background-color: var(--accent-hover);
+  color: white;
+  box-shadow: var(--main3) 0.1em 0.1em;
+  text-decoration: none;
+}

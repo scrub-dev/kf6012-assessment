@@ -13,6 +13,7 @@ class HtmlRequestHandler extends RequestHandler {
         switch($request->get_path()){
             default:
                 header('Location: ' . BASEPATH . "error?code=404&message=Page%20not%20found");
+            case "":
             case "home":
                 $controller = new HTML\HomepageController($request, $this->response);
                 break;

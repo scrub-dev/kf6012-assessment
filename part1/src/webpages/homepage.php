@@ -9,8 +9,8 @@ class HomePage extends Webpage {
     $this->set_head($title);
     $this->set_foot();
 
-
-    $this->add_heading1("Home", "header");
+    $this->add_navbar(["Home" => BASEPATH ."home", "Documentation" => BASEPATH ."documentation"]);
+    $this->add_heading1("Home", "accent-underline");
 
     $x = <<< EOT
     Name: Scott Donaldson<br>
@@ -22,6 +22,6 @@ EOT;
 EOT;
     $this->add_paragraph($x, "main");
     $this->add_paragraph($y, "main");
-    $this->add_link("Documentation", BASEPATH ."documentation", "link");
+    $this->add_link("Documentation", BASEPATH ."documentation", "button-accent");
   }
 }

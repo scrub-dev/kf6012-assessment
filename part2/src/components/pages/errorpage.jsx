@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 export default class Errorpage extends React.Component {
-  render() {
+  render () {
     return (
       <h1>Error Page</h1>
     )

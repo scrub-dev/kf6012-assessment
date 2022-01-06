@@ -13,5 +13,7 @@ Designing Interactive Systems conference
 
 ***
 ## Additional Information:
+[![Standard-Js](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](https://standardjs.com/)
+Part 2 used [StandardJS](https://standardjs.com) to make the projects code more readable.
 
 

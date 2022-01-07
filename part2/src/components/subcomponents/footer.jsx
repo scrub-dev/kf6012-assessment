@@ -9,8 +9,7 @@ export default class Footer extends React.Component {
           <div className='row'>
             <div className='col l6 s12'>
               <h5 className='accent-underline'>Student Information</h5>
-              <p className='grey-text text-lighten-4'>Scott Donaldson</p>
-              <p className='grey-text text-lighten-4'>19019810</p>
+              <p className='grey-text text-lighten-4'>Scott Donaldson 19019810</p>
               <p className='grey-text text-lighten-4'>This website is part of university coursework and not associated with or endorsed
                 by the DIS Conference
               </p>

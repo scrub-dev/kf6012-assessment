@@ -18,7 +18,7 @@ const pageconfig = {
     const output = []
     this.pages.forEach((page, i) => {
       const x = (
-        <li key={i + page.name}><Link to={page.name} className='white-text'>{this.uppercaseFirstLetter(page.name)}</Link></li>
+        <li key={i + page.name}><Link to={"/" + page.name} className='white-text'>{this.uppercaseFirstLetter(page.name)}</Link></li>
       )
       if (page.display) output.push(x)
     })

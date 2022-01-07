@@ -30,7 +30,10 @@ class PapersController extends Controller{
                 $this->get_gateway()->find_by_award($arr['award']);
                 break;
             case 'get_by_paper_id':
-                $this->get_gateway()->find_by_id($arr['id']);
+                $this->get_gateway()->find_one($arr['id']);
+                break;
+            case 'get_random':
+                $this->get_gateway()->get_random();
                 break;
         }
         return $this->get_gateway()->get_result();
@@ -40,8 +43,9 @@ class PapersController extends Controller{
         $id = $arr["id"];
         $award = $arr["award"];
         $author_id = $arr["author_id"];
+        $get_random = $arr["get_random"];
 
-        if(!is_null($id) && !$this->get_gateway()->does_id_exist()){
+        if(!is_null($id) && !$this->get_gateway()->does_id_exist($id)){
             $this->send_bad_request();
         }
 
@@ -49,6 +53,7 @@ class PapersController extends Controller{
             $this->send_bad_request();
         }
 
+        if(!is_null($get_random)) return 'get_random';
         if(is_null($id) && is_null($award) && is_null($author_id)) return 'get_all';
         if(is_null($id) && is_null($award)) return 'get_by_author_id';
         if(is_null($id) && is_null($author_id)) return 'get_all_with_award';
@@ -59,6 +64,7 @@ class PapersController extends Controller{
         $array['id'] = $this->get_request()->get_parameter("id");
         $array['award'] = $this->get_request()->get_parameter("award");
         $array['author_id'] = $this->get_request()->get_parameter("authorid");
+        $array['get_random'] = $this->get_request()->get_parameter("getrandom");
         return $array;
     }
 }

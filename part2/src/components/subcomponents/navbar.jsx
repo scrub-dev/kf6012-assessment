@@ -1,23 +1,7 @@
-import { Link } from 'react-router-dom'
-
 import React from 'react'
+import pageconfig from '../pages/pageconfig'
 
 export default class Navbar extends React.Component {
-  uppercaseFirstLetter (string) {
-    return string.charAt(0).toUpperCase() + string.slice(1)
-  }
-
-  generateNavbar (pages) {
-    const output = []
-    pages.forEach((page, i) => {
-      const x = (
-        <li key={i + page.name}><Link to={page.name}>{this.uppercaseFirstLetter(page.name)}</Link></li>
-      )
-      if (page.display) output.push(x)
-    })
-    return output
-  }
-
   render () {
     return (
       <nav>
@@ -26,7 +10,7 @@ export default class Navbar extends React.Component {
             <a href='home' className='accent-underline slight-margin'>KF6012 Assessment</a>
           </div>
           <ul className='right'>
-            {this.generateNavbar(this.props.pages)}
+            {pageconfig.generateLinks()}
           </ul>
         </div>
       </nav>

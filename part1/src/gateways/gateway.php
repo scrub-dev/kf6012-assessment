@@ -18,6 +18,9 @@ abstract class Gateway {
     protected function set_result($result){
         $this->result = $result;
     }
+    protected function append_result($result){
+        array_push($this->result, $result);
+    }
     public function get_result(){
         return $this->result;
     }

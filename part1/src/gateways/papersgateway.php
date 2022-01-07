@@ -7,9 +7,8 @@ use Src\Gateways\Gateway as Gateway;
  * @author: Scott Donaldson 19019810
  */
 class PapersGateway extends Gateway{
-    private $sql = "SELECT paper.paper_id, paper.title, paper.abstract, paper.doi, author.author_id, award.award_type_id, award_type.name as award_name FROM paper 
-    JOIN paper_author ON (paper_author.paper_id = paper.paper_id)
-    JOIN author ON (author.author_id = paper_author.author_id)
+    private $sql = "SELECT paper.paper_id, paper.title, paper.abstract, paper.doi, award.award_type_id
+    FROM paper 
     LEFT JOIN award ON (award.paper_id = paper.paper_id)
     LEFT JOIN award_type ON (award_type.award_type_id = award.award_type_id) ";
 
@@ -17,16 +16,42 @@ class PapersGateway extends Gateway{
         $this->set_database(DATABASE);
     }
 
-    public function find_all(){
+    public function get_all(){
         $res = $this->get_database()->execute_sql($this->sql);
         $this->set_result($res);
+    }
+
+    public function find_all(){
+        $this->get_all();
+        $arr = [];
+        foreach($this->get_result() as $paper){
+            $paper['authors'] = $this->get_authors($paper['paper_id']);
+            array_push($arr, $paper);
+        }
+        $this->set_result($arr);
     }
 
     public function find_one($id){
         $this->sql .= "WHERE paper.paper_id = :id";
         $params = [":id" => $id];
         $res = $this->get_database()->execute_sql($this->sql, $params);
-        $this->set_result($res);
+        $this->set_result($this->parse_paper($res));
+    }
+
+    public function parse_paper($res){
+        $res[0]["authors"] = $this->get_authors($res[0]["paper_id"]);
+        return $res;
+    }
+
+    public function get_authors($paper_id){
+        $sql = "SELECT author_id FROM paper_author JOIN paper ON (paper.paper_id = paper_author.paper_id) WHERE paper.paper_id = :id";
+        $params = [":id" => $paper_id];
+        $res = $this->get_database()->execute_sql($sql, $params);
+        $output = [];
+        for($i = 0; $i < count($res); $i++){
+            array_push($output, $res[$i]["author_id"]);
+        }
+        return $output;
     }
 
     public function find_largest_id(){
@@ -76,5 +101,10 @@ class PapersGateway extends Gateway{
             $res = $this->get_database()->execute_sql($this->sql);
             $this->set_result($res);
         }
+    }
+
+    public function get_random(){
+        $random_id = rand($this->find_smallest_id(), $this->find_largest_id());
+        $this->find_one($random_id);
     }
 }

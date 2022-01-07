@@ -4,14 +4,25 @@
   --main: #546e7a;
   --main2: #cfd8dc;
   --main3: #2b3033;
+  --main4: #455a64;
 }
 
-body {
+main {
   background-color: var(--main2);
+  display: flex;
+  min-height: 70vh;
+  margin: 0;
+  flex-direction: column;
 }
-
+    
 .main-bg {
   background-color: var(--main);
+}
+
+.footer{
+  background-color: var(--main4);
+  align-self: flex-end;
+  width: 100%;
 }
 
 .accent-underline {
@@ -42,4 +53,20 @@ body {
   color: white;
   box-shadow: var(--main3) 0.1em 0.1em;
   text-decoration: none;
+}
+
+.image-center {
+  display: flex;
+  justify-content: center;
+}
+
+.homepage-image {
+  width: 30vw;
+  box-shadow: var(--main3) 0.3em 0.3em;
+  transition-duration: 0.2s;
+  border: 5px solid var(--accent);
+}
+.homepage-image:hover {
+  width: 33vw;
+  border: 5px solid var(--accent-hover);
 }

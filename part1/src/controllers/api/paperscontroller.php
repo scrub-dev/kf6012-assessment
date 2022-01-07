@@ -35,6 +35,8 @@ class PapersController extends Controller{
             case 'get_random':
                 $this->get_gateway()->get_random();
                 break;
+            case 'find_award':
+                $this->get_gateway()->find_by_award($arr['award']);
         }
         return $this->get_gateway()->get_result();
     }
@@ -48,11 +50,8 @@ class PapersController extends Controller{
         if(!is_null($id) && !$this->get_gateway()->does_id_exist($id)){
             $this->send_bad_request();
         }
-
-        if(!is_null($award) && $award !== "all"){
-            $this->send_bad_request();
-        }
-
+        
+        if(!is_null($award) && $award !== "all") return 'find_award';
         if(!is_null($get_random)) return 'get_random';
         if(is_null($id) && is_null($award) && is_null($author_id)) return 'get_all';
         if(is_null($id) && is_null($award)) return 'get_by_author_id';

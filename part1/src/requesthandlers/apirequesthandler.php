@@ -25,6 +25,10 @@ class ApiRequestHandler extends RequestHandler {
                 break;
             case "readinglist":
                 $controller = new Api\ReadinglistController($request, $this->response);
+                break;
+            case "awards":
+                $controller = new Api\AwardsController($request, $this->response);
+                break;
         }
     }
 }

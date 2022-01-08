@@ -87,3 +87,7 @@ main {
 .resize {
   overflow: hidden;
 }
+
+.top-padding {
+  margin-top: 0.5em;
+}

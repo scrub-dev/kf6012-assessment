@@ -8,7 +8,7 @@ use Src\Gateways\Gateway as Gateway;
  */
 class PapersGateway extends Gateway{
     private $sql = "SELECT paper.paper_id, paper.title, paper.abstract, paper.doi
-    FROM paper ";
+    FROM paper ORDER BY paper.title ASC";
 
     public function __construct(){
         $this->set_database(DATABASE);

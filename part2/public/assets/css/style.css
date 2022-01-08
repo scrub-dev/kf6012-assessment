@@ -91,3 +91,11 @@ main {
 .top-padding {
   margin-top: 0.5em;
 }
+
+input::placeholder{
+  color: grey;
+}
+
+label {
+  color: grey;
+}

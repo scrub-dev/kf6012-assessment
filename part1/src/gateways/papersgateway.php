@@ -8,13 +8,14 @@ use Src\Gateways\Gateway as Gateway;
  */
 class PapersGateway extends Gateway{
     private $sql = "SELECT paper.paper_id, paper.title, paper.abstract, paper.doi
-    FROM paper ORDER BY paper.title ASC";
+    FROM paper ";
 
     public function __construct(){
         $this->set_database(DATABASE);
     }
 
     public function get_all(){
+        $this->sql .= " ORDER BY paper.title ASC";
         $res = $this->get_database()->execute_sql($this->sql);
         $this->set_result($res);
     }

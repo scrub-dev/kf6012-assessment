@@ -13,6 +13,7 @@ class AuthorsGateway extends Gateway{
     }
 
     public function find_all(){
+        $this->sql .= " ORDER BY first_name || middle_name || last_name ASC";
         $res = $this->get_database()->execute_sql($this->sql);
         $this->set_result($res);
     }

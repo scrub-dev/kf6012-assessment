@@ -44,6 +44,14 @@ class PapersGateway extends Gateway{
         return $res;
     }
 
+    public function parse_papers($res){
+        for($i = 0; $i < count($res); $i++){
+            $res[$i]["authors"] = $this->get_authors($res[$i]["paper_id"]);
+            $res[$i]["awards"] = $this->get_awards($res[$i]["paper_id"]);
+        }
+        return $res;
+    }
+
     public function get_authors($paper_id){
         $sql = "SELECT paper_author.author_id, author.first_name, author.middle_name, author.last_name FROM paper_author JOIN author ON (author.author_id = paper_author.author_id) WHERE paper_author.paper_id = :id";
         $params = [":id" => $paper_id];
@@ -66,7 +74,6 @@ class PapersGateway extends Gateway{
         }
         return $output;
     }
-    //60200
 
     public function find_largest_id(){
         $sql = "SELECT paper_id FROM paper WHERE paper_id = (SELECT MAX(paper_id) FROM paper)";
@@ -98,10 +105,11 @@ class PapersGateway extends Gateway{
     }
 
     public function find_by_author($id){
-        $this->sql .= "WHERE author.authod_id = :id";
+        $this->sql .= "JOIN paper_author ON (paper_author.paper_id = paper.paper_id) 
+        WHERE paper_author.author_id = :id";
         $params = [":id" => $id];
         $res = $this->get_database()->execute_sql($this->sql, $params);
-        $this->set_result($res);
+        $this->set_result($this->parse_papers($res));
     }
 
     public function find_by_award($award){

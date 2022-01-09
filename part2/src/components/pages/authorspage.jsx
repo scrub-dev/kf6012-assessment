@@ -1,7 +1,6 @@
 import React from 'react'
 import { Col, Row } from 'react-materialize'
 import Footer from '../subcomponents/footer'
-import Dropdown from '../subcomponents/dropdown'
 import TextInput from '../subcomponents/textinput'
 import Authors from '../subcomponents/authors/authors'
 

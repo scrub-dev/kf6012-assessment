@@ -1,5 +1,6 @@
 import React from 'react'
 import pageconfig from '../pages/pageconfig'
+import Login from './login'
 
 export default class Navbar extends React.Component {
   render () {
@@ -12,6 +13,7 @@ export default class Navbar extends React.Component {
               <a href='home' className='accent-underline slight-margin'>KF6012 Assessment</a>
             </div>
             <ul className='right'>
+              <li>{<Login/>}</li>
               {pageconfig.generateLinks()}
             </ul>
           </div>

@@ -48,6 +48,11 @@ main {
   margin-right: 0.2em;
 }
 
+.slightly-more-margin {
+  margin-left: 0.4em;
+  margin-right: 0.4em;
+}
+
 .button-accent {
   padding: 0.2em;
   background-color: var(--accent);

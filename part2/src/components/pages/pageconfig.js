@@ -3,13 +3,18 @@ import Errorpage from './errorpage'
 import Homepage from './homepage'
 import Paperspage from './paperspage'
 import { Link, Route } from 'react-router-dom'
+import LoginPage from './loginpage'
+import AuthenticationHelper from '../authenticationhelper'
+import ReadingListPage from './readinglistpage'
 
 const pageconfig = {
   pages: [
     { name: 'home', paths: ['/', 'home'], component: <Homepage />, display: true },
     { name: 'papers', paths: ['papers'], component: <Paperspage />, display: true },
     { name: 'authors', paths: ['authors'], component: <Authorpage />, display: true },
-    { name: 'error', paths: ['*'], component: <Errorpage />, display: false }
+    { name: 'error', paths: ['*'], component: <Errorpage />, display: false },
+    { name: 'login', paths: ['login'], component: <LoginPage/>, display: false},
+    { name: 'reading list', paths: ['readinglist'], component: <ReadingListPage/>, display: (AuthenticationHelper.authenticated)}
   ],
   uppercaseFirstLetter (string) {
     return string.charAt(0).toUpperCase() + string.slice(1)

@@ -4,45 +4,46 @@ import Homepage from './homepage'
 import Paperspage from './paperspage'
 import { Link, Route } from 'react-router-dom'
 import LoginPage from './loginpage'
-import AuthenticationHelper from '../authenticationhelper'
 import ReadingListPage from './readinglistpage'
 
 const pageconfig = {
-  pages: [
-    { name: 'home', paths: ['/', 'home'], component: <Homepage />, display: true },
-    { name: 'papers', paths: ['papers'], component: <Paperspage />, display: true },
-    { name: 'authors', paths: ['authors'], component: <Authorpage />, display: true },
-    { name: 'error', paths: ['*'], component: <Errorpage />, display: false },
-    { name: 'login', paths: ['login'], component: <LoginPage/>, display: false},
-    { name: 'reading list', paths: ['readinglist'], component: <ReadingListPage/>, display: (AuthenticationHelper.authenticated)}
-  ],
+  pages: (authenticated) => {
+    return [
+      { name: 'home', paths: ['/', 'home'], component: <Homepage authenticated={authenticated}/>, display: true, requiresAuth: false},
+      { name: 'papers', paths: ['papers'], component: <Paperspage authenticated={authenticated}/>, display: true, requiresAuth: false },
+      { name: 'authors', paths: ['authors'], component: <Authorpage authenticated={authenticated}/>, display: true, requiresAuth: false },
+      { name: 'error', paths: ['*'], component: <Errorpage/>, display: false, requiresAuth: false },
+      { name: 'login', paths: ['login'], component: <LoginPage/>, display: false, requiresAuth: false},
+      { name: 'reading list', paths: ['readinglist'], component: <ReadingListPage authenticated={authenticated}/>, display: false, requiresAuth: true}
+    ]
+  },
   uppercaseFirstLetter (string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
   },
-  generateLinks () {
+  generateLinks (authenticated) {
     const output = []
-    this.pages.forEach((page, i) => {
+    this.pages(authenticated).forEach((page, i) => {
       const x = (
-        <li key={i + page.name}><Link to={"/" + page.name} className='white-text'>{this.uppercaseFirstLetter(page.name)}</Link></li>
+        <li key={i + page.name}><Link to={"/" + page.name.replace(/\s/g, '')} className='white-text'>{this.uppercaseFirstLetter(page.name)}</Link></li>
       )
-      if (page.display) output.push(x)
+      if (page.display || (page.requiresAuth && authenticated)) output.push(x)
     })
     return output
   },
-  generateATags () {
+  generateATags (authenticated) {
     const output = []
-    this.pages.forEach((page, i) => {
+    this.pages(authenticated).forEach((page, i) => {
       const x = (
         <li key={i + page.name}><a href={page.name} className='white-text'>{this.uppercaseFirstLetter(page.name)}</a></li>
       )
-      if (page.display) output.push(x)
+      if (page.display  || (page.requiresAuth && authenticated)) output.push(x)
     })
     return output
   },
 
-  generateRoutes () {
+  generateRoutes (authenticated) {
     const output = []
-    this.pages.forEach((page, i) => {
+    this.pages(authenticated).forEach((page, i) => {
       page.paths.forEach(path => {
         output.push(<Route path={path} element={page.component} key={i + page.name} />)
       })

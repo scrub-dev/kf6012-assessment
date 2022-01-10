@@ -15,6 +15,8 @@ Designing Interactive Systems conference
 ## Additional Information:
 [![Standard-Js](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](https://standardjs.com/)
 
+Due to external factors dictating time spent on the assessment, the styling of the website is not as responsive as I would have liked as a result, the website currently supports screens of 1920*1080 or >=23"
+
 ### Extra Modules Used in Part2
 [StandardJS](https://standardjs.com) to make the project code more readable.
 

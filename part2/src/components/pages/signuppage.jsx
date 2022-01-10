@@ -3,6 +3,7 @@ import Footer from '../subcomponents/footer'
 import config from '../../config'
 import { Button, Modal, Row } from 'react-materialize'
 import TextInput from '../subcomponents/textinput'
+import Redirect from '../subcomponents/redirect'
 
 export default class SignupPage extends React.Component {
   constructor(props){
@@ -86,7 +87,7 @@ export default class SignupPage extends React.Component {
         }
       }
       if (data.status !== 200 && data.status !== 401) throw new Error((config.DEV_MODE) ? `API Error: ${data.status} | ${data.message} | ${url}` : 'API Error')
-      if(data.results !== undefined &&'token' in data.results ){
+      if(data.results !== undefined && 'token' in data.results ){
 
         this.props.setAuth(true)
         localStorage.setItem('authToken', data.results.token)
@@ -102,19 +103,9 @@ export default class SignupPage extends React.Component {
     }
   }
   render(){
-    let output = ""
-
-    if(this.props.authenticated){
-      output = (
-        <React.Fragment>
-        <div className = 'tall container center-div'>
-          <h1>Congratulations, you have been signed in</h1>
-        </div>
-      </React.Fragment>
-      )
-
-    }else{
-      output = (
+    return (
+      <div>
+        <Redirect location='/home' redirect={this.props.authenticated}/>
         <React.Fragment>
           {this.state.output}
           <div className='tall container center-div'>
@@ -133,11 +124,6 @@ export default class SignupPage extends React.Component {
           </div>
           <Footer/>
         </React.Fragment>
-      )
-    }
-    return (
-      <div>
-        {output}
       </div>
     )
   }

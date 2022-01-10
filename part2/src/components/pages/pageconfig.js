@@ -3,7 +3,6 @@ import Errorpage from './errorpage'
 import Homepage from './homepage'
 import Paperspage from './paperspage'
 import { Link, Route } from 'react-router-dom'
-import LoginPage from './loginpage'
 import ReadingListPage from './readinglistpage'
 import SignupPage from './signuppage'
 
@@ -14,7 +13,6 @@ const pageconfig = {
       { name: 'papers', paths: ['papers'], component: <Paperspage authenticated={authenticated}/>, display: true, requiresAuth: false },
       { name: 'authors', paths: ['authors'], component: <Authorpage authenticated={authenticated}/>, display: true, requiresAuth: false },
       { name: 'error', paths: ['*'], component: <Errorpage/>, display: false, requiresAuth: false },
-      { name: 'login', paths: ['login'], component: <LoginPage/>, display: false, requiresAuth: false},
       { name: 'reading list', paths: ['readinglist'], component: <ReadingListPage authenticated={authenticated}/>, display: false, requiresAuth: true},
       { name: 'signup', paths: ['signup'], component: <SignupPage authenticated={authenticated} setAuth={authFunc}/>, display: false, requiresAuth: false}
     ]

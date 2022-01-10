@@ -32,7 +32,7 @@ export default class Author extends React.Component {
           trigger={<Button node='button' className='full resize top-padding'>{this.parseName(this.props.author)}</Button>}
         >
           <span><strong>{this.props.author.first_name}'s Papers: </strong></span>
-          <Papers authorid={this.props.author.author_id}/>
+          <Papers authorid={this.props.author.author_id} authenticated={this.props.authenticated}/>
         </Modal>
       </Col>
     )

@@ -96,7 +96,7 @@ export default class Papers extends React.Component {
         {buttons}
         <Row>
           {noData}
-          {filteredResults.map((paper, i) => <Paper key={i + paper.title} paper={paper} size={filteredResults.length} authenticated={this.props.authenticated}/>)}
+          {filteredResults.map((paper, i) => <Paper key={i + paper.title} paper={paper} size={filteredResults.length} authenticated={this.props.authenticated} rltype='add'/>)}
         </Row>
       </div>
     )

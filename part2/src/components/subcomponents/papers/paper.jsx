@@ -1,5 +1,7 @@
 import React from 'react'
 import {Modal, Button, Col } from 'react-materialize'
+import AddReadingListButton from '../readinglist/addreadinglistbutton'
+import RemoveReadingListButton from '../readinglist/removereadinglistbutton'
 
 export default class Paper extends React.Component {
   getAuthors = () => {
@@ -18,11 +20,20 @@ export default class Paper extends React.Component {
   }
   render () {
     let gds = this.generateDynamicSize()
+
+    let rlbutton = ""
+    if(this.props.rltype !== undefined && this.props.rltype === 'remove' && this.props.authenticated){
+      rlbutton = (<RemoveReadingListButton/>)
+    }
+    if(this.props.rltype !== undefined && this.props.rltype === 'add' && this.props.authenticated){
+      rlbutton = (<AddReadingListButton/>)
+    }
+
     return (
       <Col s={gds.s} m={gds.m} l={gds.l}>
         <Modal
           actions={[
-            <Button flat modal="close" node="button">Close</Button>
+            rlbutton, <Button flat modal="close" node="button">Close</Button>
           ]}
           bottomSheet={false}
           fixedFooter={false}

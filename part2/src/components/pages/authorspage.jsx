@@ -53,6 +53,7 @@ export default class Authorpage extends React.Component {
                 handlePreviousClick={this.handlePreviousClick}
                 handleNextClick={this.handleNextClick}
                 search={this.state.search}
+                authenticated={this.props.authenticated}
               />
             </Row>
           </div>

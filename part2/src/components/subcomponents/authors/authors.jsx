@@ -89,7 +89,7 @@ export default class Authors extends React.Component {
         {buttons}
         <Row>
           {noData}
-          {filteredResults.map((author, i) => <Author author={author} key={i + author.first_name} size={filteredResults.length}/>)}
+          {filteredResults.map((author, i) => <Author author={author} key={i + author.first_name} size={filteredResults.length} authenticated={this.props.authenticated}/>)}
         </Row>
       </div>
     )

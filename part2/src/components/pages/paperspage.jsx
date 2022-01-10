@@ -91,6 +91,7 @@ export default class Paperspage extends React.Component {
                 handlePageSize = {this.handlePageSizeSelect}
                 award = {this.state.award}
                 search = {this.state.search}
+                authenticated = {this.props.authenticated}
               />
             </Row>
           </div>

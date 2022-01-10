@@ -23,10 +23,10 @@ export default class Paper extends React.Component {
 
     let rlbutton = ""
     if(this.props.rltype !== undefined && this.props.rltype === 'remove' && this.props.authenticated){
-      rlbutton = (<RemoveReadingListButton/>)
+      rlbutton = (<RemoveReadingListButton paperid={this.props.paper_id}/>)
     }
     if(this.props.rltype !== undefined && this.props.rltype === 'add' && this.props.authenticated){
-      rlbutton = (<AddReadingListButton/>)
+      rlbutton = (<AddReadingListButton paperid={this.props.paper_id}/>)
     }
 
     return (

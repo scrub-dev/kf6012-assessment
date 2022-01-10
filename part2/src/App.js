@@ -16,11 +16,11 @@ export default class App extends React.Component {
 
   render(){
     return (
-      <BrowserRouter>
+      <BrowserRouter basename='/kf6012/part2'>
         <div className='App'>
           <Navbar authenticated={this.state.authenticated} setAuth={this.state.setAuthenticated}/>
           <Routes>
-            {pageconfig.generateRoutes(this.state.authenticated)}
+            {pageconfig.generateRoutes(this.state.authenticated, this.state.setAuthenticated)}
           </Routes>
         </div>
       </BrowserRouter>

@@ -89,6 +89,10 @@ main {
   width: 100%;
 }
 
+.tall {
+  height: 90vh ;
+}
+
 .resize {
   overflow: hidden;
 }
@@ -103,4 +107,17 @@ input::placeholder{
 
 label {
   color: grey;
+}
+
+.center-div{
+  margin: auto;
+  width: 50%;
+  position: relative;
+}
+.centered{
+  margin: 0 auto;
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  transform: translateY(-50%, -50%);
 }

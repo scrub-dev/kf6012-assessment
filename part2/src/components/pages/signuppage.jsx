@@ -1,24 +1,24 @@
 import React from 'react'
-import { Row, Col, Button, Modal } from 'react-materialize'
-import TextInput from './textinput'
+import Footer from '../subcomponents/footer'
 import config from '../../config'
-import { useNavigate } from 'react-router-dom'
-import SignupButton from './signupbutton'
+import { Button, Modal, Row } from 'react-materialize'
+import TextInput from '../subcomponents/textinput'
 
-export default class Login extends React.Component {
+export default class SignupPage extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       email: "",
       password: "",
+      password2: "",
       output: ""
     }
 
     this.handleEmail = this.handleEmail.bind(this)
     this.handlePassword = this.handlePassword.bind(this)
-    
-    this.handleLoginClick = this.handleLoginClick.bind(this)
-    this.handleLogoutClick = this.handleLogoutClick.bind(this)
+    this.handlePassword2 = this.handlePassword2.bind(this)
+
+    this.handleSignup = this.handleSignup.bind(this)
   }
 
   handleEmail = e => {
@@ -29,22 +29,13 @@ export default class Login extends React.Component {
     this.setState({password: e.target.value})
   }
 
-  handleLogoutClick = () => {
-    this.props.setAuth(false)
-    localStorage.removeItem('authToken')
+  handlePassword2 = e => {
+    this.setState({password2: e.target.value})
   }
 
-  clearOutput = () => {
-    this.setState({output: ''})
-  }
-
-  handleSignupClick = () => {
-    const navigate = useNavigate()
-    navigate("/signup")
-  }
-
-  handleLoginClick = async () => {
+  handleSignup = async () => {
     this.setState({output: ""})
+
     let missingParamModal = (
       <Modal
       actions={[<Button flat modal='close' node='button' onClick={this.clearOutput}>Close</Button>]}
@@ -53,7 +44,7 @@ export default class Login extends React.Component {
       header='Missing Email or Password'
       open={true}
     >
-      <p>Please fill in both the email and password fields correctly.</p>
+      <p>Please fill in all the email and password fields correctly.</p>
     </Modal>
     )
 
@@ -66,7 +57,7 @@ export default class Login extends React.Component {
         header='Username or Password Incorrect'
         open={true}
       >
-        <p>Please fill in both the email and password fields correctly.</p>
+        <p>Please fill in all the email and password fields correctly.</p>
       </Modal>
       )
     )
@@ -76,6 +67,7 @@ export default class Login extends React.Component {
     let formData = new FormData()
     formData.append('email', this.state.email)
     formData.append('password', this.state.password)
+    formData.append('create', true);
 
     try{
       const res = await fetch(url, {
@@ -86,7 +78,10 @@ export default class Login extends React.Component {
       const data = await res.json()
       if(data.status === 401) {
         this.setState({output: incorrectModal})
-        if(this.state.password === '' || this.state.email === ''){
+        if(this.state.password === '' 
+        || this.state.email === '' 
+        || this.state.password2 === ''
+        || this.state.password2 !== this.state.password){
           this.setState({output: missingParamModal})
         }
       }
@@ -95,44 +90,53 @@ export default class Login extends React.Component {
 
         this.props.setAuth(true)
         localStorage.setItem('authToken', data.results.token)
+
+        this.setState({
+          email: "",
+          password: "",
+          password2: ""
+        })
       }
     }catch (e) {
       console.log('Something went wrong ', e)
     }
   }
-
   render(){
     let output = ""
+
     if(this.props.authenticated){
       output = (
-        <Row>
-          <Col s={4} m={4} l={4}>
-            <Button onClick={this.handleLogoutClick}>Logout</Button>
-          </Col>
-        </Row>
+        <React.Fragment>
+        <div className = 'tall container center-div'>
+          <h1>Congratulations, you have been signed in</h1>
+        </div>
+      </React.Fragment>
       )
+
     }else{
       output = (
-        <Row>
+        <React.Fragment>
           {this.state.output}
-        <Col s={4} m={4} l={4}>
-          <TextInput placeholder='email' textValue={this.state.email} handleOnChange={this.handleEmail}/>
-        </Col>
-        <Col s={4} m={4} l={4}>
-          <TextInput placeholder='password' textValue={this.state.password} handleOnChange={this.handlePassword}/>
-        </Col>
-        <Col s={2} m={2} l={2}>
-          <Button onClick={this.handleLoginClick}>Login</Button>
-        </Col>
-        <Col s={2} m={2} l={2}>
-          <SignupButton/>
-        </Col>
-      </Row>
+          <div className='tall container center-div'>
+            <div className='centered'>
+              <Row>
+                <TextInput label='Email' placeholder='Email' textValue={this.state.email} handleOnChange={this.handleEmail}/>
+              </Row>
+              <Row>
+                <TextInput label='Password' placeholder='Password' textValue={this.state.password} handleOnChange={this.handlePassword}/>
+              </Row>
+              <Row>
+                <TextInput label='Confirm Password' placeholder='Confirm Password' textValue={this.state.password2} handleOnChange={this.handlePassword2}/>
+              </Row>
+              <Button onClick={this.handleSignup}>Create Account</Button>
+            </div>
+          </div>
+          <Footer/>
+        </React.Fragment>
       )
     }
-
     return (
-      <div className='slightly-more-margin'>
+      <div>
         {output}
       </div>
     )

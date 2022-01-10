@@ -17,4 +17,18 @@ class AuthenticationGateway extends Gateway{
       $res = $this->get_database()->execute_sql($sql, $params);
       $this->set_result($res);
     }
+
+    public function create_account($email, $pword){
+        $sql = "INSERT INTO user (email, password) VALUES (:email, :pass)";
+        $params = [":email" => $email,
+                   ":pass" => $pword];
+        $this->get_database()->execute_sql($sql, $params);
+    }
+
+    public function does_email_exist($email){
+        $sql = "SELECT EXISTS (SELECT email FROM user WHERE email = :x LIMIT 1)";
+        $params = [":x" => $email];
+        $res = $this->get_database()->execute_sql($sql, $params);
+        return ($res[0] === 1)? true : false;
+    }
 }

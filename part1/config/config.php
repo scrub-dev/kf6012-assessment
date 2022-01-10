@@ -4,7 +4,7 @@ spl_autoload_register('autoloader');
 
 define('DEV_MODE', true);
 
-define('BASEPATH', (DEV_MODE)? '/part1/' : 'kf6012/part1/');
+define('BASEPATH', (DEV_MODE)? '/part1/' : '/kf6012/part1/');
 define('API_BASEPATH', BASEPATH . "api/");
 define('DATABASE', 'src/database/databases/dis.sqlite');
 define('USER_DATABASE', 'src/database/databases/user.sqlite');

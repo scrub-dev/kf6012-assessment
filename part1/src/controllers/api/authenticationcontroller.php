@@ -23,8 +23,20 @@ class AuthenticationController extends Controller{
 
         $email = $this->get_request()->get_parameter("email");
         $password = $this->get_request()->get_parameter("password");
+        $create = $this->get_request()->get_parameter("create");
 
         if(!is_null($email) && !is_null($password)){
+
+            if(!is_null($create) && $email !== '' && $password !== ''){
+                if($this->get_gateway()->does_email_exist($email)){
+                    $this->get_response()->set_message($this->get_gateway()->does_email_exist($email));
+                    $this->get_response()->set_status_code(401);
+                    return $this->get_response();
+                }
+                $hashed_pass = password_hash($password, PASSWORD_BCRYPT);
+                $this->get_gateway()->create_account($email, $hashed_pass);
+            }
+
             $this->get_gateway()->find_password($email);
             if(count($this->get_gateway()->get_result()) === 1){
                 $h_password = $this->get_gateway()->get_result()[0]['password'];

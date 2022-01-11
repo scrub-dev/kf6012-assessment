@@ -16,6 +16,7 @@ class ReadinglistController extends Controller{
         $this->gateway = new ReadinglistGateway();
     }
     protected function process_request(){
+        //ensure request is post
         if($this->get_request()->get_request_method() !== "POST"){
             $this->send_method_not_allowed();
         }
@@ -25,12 +26,16 @@ class ReadinglistController extends Controller{
         $remove = $this->get_request()->get_parameter('remove');
         $exists = $this->get_request()->get_parameter('exists');
 
+        //ensure a token exists
         if(is_null($token)){
             $this->send_unauthorised();
         }else{
+            //decode JWT
             $key = SECRET_KEY;
             $decoded = JWT::decode($token, new Key($key, 'HS256'));
             $uid = $decoded->user_id;
+
+            //decide what to do
             if(!is_null($exists)) $this->get_gateway()->find_exists($uid, $exists);
             else if(!is_null($add)) $this->get_gateway()->add($uid, $add);
             else if(!is_null($remove )) $this->get_gateway()->remove($uid, $remove);

@@ -15,6 +15,7 @@ class AwardsController extends Controller{
         $this->gateway = new AwardsGateway();
     }
     protected function process_request(){
+        // get awards and their ids
         if($this->get_request()->get_request_method() !== "GET") {
             $this->send_method_not_allowed();
         }

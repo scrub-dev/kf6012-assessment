@@ -41,7 +41,7 @@ class DocumentationPage extends Webpage {
           'description' => 'Authenticates a user and returns a JSON Web Token.',
           'full_url' => "http://" . $_SERVER['HTTP_HOST'] . API_BASEPATH . "authenticate",
           'supported_http_methods' => 'POST',
-          'supported_parameters' => "Email: String, Password: String",
+          'supported_parameters' => "Email: String, Password: String, Create: Bool",
           'expected_response' => 'Status, Message, Count, Timestamp, Results',
           'expected_status_code' => ['200','204','400','401'],
           'example_request' => $_SERVER['HTTP_HOST'] . API_BASEPATH . "authenticate" . " POST:{email: xxx@xxx.com, password: 123}",
@@ -52,7 +52,7 @@ class DocumentationPage extends Webpage {
           'description' => 'If a user is authenticated, returns that user\'s list of papers on their reading list.',
           'full_url' => "http://" . $_SERVER['HTTP_HOST'] . API_BASEPATH . "readinglist",
           'supported_http_methods' => 'POST',
-          'supported_parameters' => "UID: Number",
+          'supported_parameters' => "UID: Number, Exists: Paper ID",
           'expected_response' => 'Status, Message, Count, Timestamp, Results',
           'expected_status_code' => ['200','204','400','401'],
           'example_request' => $_SERVER['HTTP_HOST'] . API_BASEPATH . "readinglist" . " POST:{token: JWTToken, add: (paper_id)}",
@@ -75,6 +75,8 @@ class DocumentationPage extends Webpage {
         $this->generate_documentation_snub($readinglistendpoint);
         $this->generate_documentation_snub($awardsendpoint);
     }
+
+    //generate a snub for an endpoint in a predicatable way to follow styling
     private function generate_documentation_snub($array = []){
         $this->append_body("<div class='documentation_snub'>");
         $this->add_heading2($array['endpoint_name'],"accent-hover-underline");

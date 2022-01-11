@@ -12,6 +12,7 @@ use Src\Webpages\HomePage;
  */
 class HomepageController extends Controller{
     public function process_request(){
+        // generate homepage
         $data = new HomePage("Home");
         return $data->generate_webpage();
     }

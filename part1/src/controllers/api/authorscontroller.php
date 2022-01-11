@@ -20,10 +20,13 @@ class AuthorsController extends Controller{
 
         $id = $this->get_request()->get_parameter("id");
 
+        //Check if ID exist
         if(is_null($id)) $this->get_gateway()->find_all();
         else if($this->get_gateway()->does_id_exist($id)){
+            //get one author
             $this->get_gateway()->find_one($id);
         }else{
+            //get all authors
             $this->send_bad_request();
         }
         

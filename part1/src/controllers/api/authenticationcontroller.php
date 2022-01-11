@@ -25,31 +25,39 @@ class AuthenticationController extends Controller{
         $password = $this->get_request()->get_parameter("password");
         $create = $this->get_request()->get_parameter("create");
 
+        //Check if email and password are set
         if(!is_null($email) && !is_null($password)){
-
+            
+            //Check if create is set
             if(!is_null($create) && $email !== '' && $password !== ''){
+                //Error and return if email to create already exists in database
                 if($this->get_gateway()->does_email_exist($email)){
                     $this->get_response()->set_message($this->get_gateway()->does_email_exist($email));
                     $this->get_response()->set_status_code(401);
                     return $this->get_response();
                 }
+                //Generate hashed password
                 $hashed_pass = password_hash($password, PASSWORD_BCRYPT);
                 $this->get_gateway()->create_account($email, $hashed_pass);
             }
 
+            //find hashed password in database
             $this->get_gateway()->find_password($email);
+            //make sure password exists
             if(count($this->get_gateway()->get_result()) === 1){
                 $h_password = $this->get_gateway()->get_result()[0]['password'];
                 $id = $this->get_gateway()->get_result()[0]['id'];
 
+                //encode JWT
                 $key = SECRET_KEY;
                 $payload = Array("user_id" => $id, "exp"=> time() + 7776000);
                 $jwt = JWT::encode($payload, $key, 'HS256');
-                
+                //verify password
                 if(password_verify($password, $h_password)) $data['token'] = $jwt;
             }
         }
 
+        //if key does not exist, means password failed or wrong data sent
         if(!array_key_exists('token', $data)){
             $this->send_unauthorised();
         }

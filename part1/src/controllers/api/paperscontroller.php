@@ -18,6 +18,7 @@ class PapersController extends Controller{
             $this->send_method_not_allowed();
         }
         $arr = $this->parameters_to_array();
+        // find out which gateway operation to execute based on parsing the parameters.
         switch($this->parse_parameters($arr)){
             default:
             case 'get_all':
@@ -42,15 +43,18 @@ class PapersController extends Controller{
     }
 
     private function parse_parameters($arr = []) {
+        // turn array into variables
         $id = $arr["id"];
         $award = $arr["award"];
         $author_id = $arr["author_id"];
         $get_random = $arr["get_random"];
 
+        // make sure ID is set
         if(!is_null($id) && !$this->get_gateway()->does_id_exist($id)){
             $this->send_bad_request();
         }
         
+        // check what is set and what isnt set to decide what operation to run
         if(!is_null($award) && $award !== "all") return 'find_award';
         if(!is_null($get_random)) return 'get_random';
         if(is_null($id) && is_null($award) && is_null($author_id)) return 'get_all';
@@ -60,6 +64,7 @@ class PapersController extends Controller{
     }
 
     private function parameters_to_array(){
+        //Turn parameters into array
         $array['id'] = $this->get_request()->get_parameter("id");
         $array['award'] = $this->get_request()->get_parameter("award");
         $array['author_id'] = $this->get_request()->get_parameter("authorid");

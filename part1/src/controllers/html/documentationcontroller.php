@@ -12,6 +12,7 @@ use Src\Webpages\DocumentationPage;
  */
 class DocumentationController extends Controller{
     public function process_request(){
+        //generate documentation page
         $data = new DocumentationPage("Documentation Page");
         return $data->generate_webpage();
     }

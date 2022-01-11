@@ -11,6 +11,8 @@ class ErrorPage extends Webpage {
       $this->append_body($this->generate_error_page($error_arr));
       $this->set_foot();
     }
+
+    //generate custom error message based on what it receives
     private function generate_error_page($array = []){
       $this->add_heading1("Oops ".$array['code'], "accent-underline");
       $this->add_paragraph($array['message'], "main");

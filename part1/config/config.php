@@ -2,7 +2,7 @@
 include 'config/autoloader.php';
 spl_autoload_register('autoloader');
 
-define('DEV_MODE', false);
+define('DEV_MODE', true);
 
 define('BASEPATH', (DEV_MODE)? '/part1/' : '/kf6012/part1/');
 define('API_BASEPATH', BASEPATH . "api/");

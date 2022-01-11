@@ -23,6 +23,7 @@ class ReadinglistController extends Controller{
         $token = $this->get_request()->get_parameter('token');
         $add = $this->get_request()->get_parameter('add');
         $remove = $this->get_request()->get_parameter('remove');
+        $exists = $this->get_request()->get_parameter('exists');
 
         if(is_null($token)){
             $this->send_unauthorised();
@@ -30,11 +31,11 @@ class ReadinglistController extends Controller{
             $key = SECRET_KEY;
             $decoded = JWT::decode($token, new Key($key, 'HS256'));
             $uid = $decoded->user_id;
-    
-            if(!is_null($add)) $this->get_gateway()->add($uid, $add);
+            if(!is_null($exists)) $this->get_gateway()->find_exists($uid, $exists);
+            else if(!is_null($add)) $this->get_gateway()->add($uid, $add);
             else if(!is_null($remove )) $this->get_gateway()->remove($uid, $remove);
             else $this->get_gateway()->find_all($uid);
-    
+
             return $this->get_gateway()->get_result();
         }
     }

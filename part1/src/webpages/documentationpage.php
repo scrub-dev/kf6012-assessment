@@ -41,7 +41,7 @@ class DocumentationPage extends Webpage {
           'description' => 'Authenticates a user and returns a JSON Web Token.',
           'full_url' => "http://" . $_SERVER['HTTP_HOST'] . API_BASEPATH . "authenticate",
           'supported_http_methods' => 'POST',
-          'supported_parameters' => "Email: String, Password: String, Create: Bool",
+          'supported_parameters' => "Email: String, Password: String, Create: Bool, Expired: JWT",
           'expected_response' => 'Status, Message, Count, Timestamp, Results',
           'expected_status_code' => ['200','204','400','401'],
           'example_request' => $_SERVER['HTTP_HOST'] . API_BASEPATH . "authenticate" . " POST:{email: xxx@xxx.com, password: 123}",

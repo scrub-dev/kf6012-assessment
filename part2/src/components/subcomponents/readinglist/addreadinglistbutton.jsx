@@ -12,6 +12,8 @@ export default class AddReadingListButton extends React.Component {
     }
   }
   componentDidMount = async () => {
+
+    // get reading list
     const id = this.props.paperid
 
     try{
@@ -35,6 +37,7 @@ export default class AddReadingListButton extends React.Component {
     }
   }
 
+  // add paper id to reading list
   addToReadingList = async () => {
     const id = this.props.paperid
 

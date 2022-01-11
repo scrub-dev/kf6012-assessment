@@ -72,6 +72,7 @@ export default class Login extends React.Component {
 
   handleLoginClick = async () => {
     this.setState({output: ""})
+    // popup if missing params
     let missingParamModal = (
       <Modal
       actions={[<Button flat modal='close' node='button' onClick={this.clearOutput}>Close</Button>]}
@@ -83,7 +84,7 @@ export default class Login extends React.Component {
       <p>Please fill in both the email and password fields correctly.</p>
     </Modal>
     )
-
+    // popup for invalid or incorrect params
     let incorrectModal = (
       (
         <Modal
@@ -97,7 +98,7 @@ export default class Login extends React.Component {
       </Modal>
       )
     )
-
+    // validate params
     let url = ((config.DEV_MODE) ? config.DEV_BASEPATH : config.BASEPATH) + 'authenticate'
 
     let formData = new FormData()

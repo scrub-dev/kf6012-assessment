@@ -29,7 +29,7 @@ export default class Papers extends React.Component {
       console.log('Something went wrong ', e)
     }
   }
-
+  // generates pagesize dropdown
   generatePageSize = (options) => {
     let output = []
     options.forEach( e => {
@@ -39,15 +39,17 @@ export default class Papers extends React.Component {
   }
 
   render () {
+    // array for anon funcs
     const filterFunctions = []
 
+    // add search func to array
     if (this.props.search !== '' && this.props.search !== undefined) {
       filterFunctions.push(paper => {
         return (paper.title.toLowerCase().includes(this.props.search.toLowerCase()) ||
         paper.abstract.toLowerCase().includes(this.props.search.toLowerCase()))
       })
     }
-
+    //add award search func to array
     if (this.props.award !== '' && this.props.award !== undefined) {
       filterFunctions.push(paper => {
         if(this.props.award.toLowerCase() === 'all') return (paper.awards.length > 0)
@@ -58,12 +60,12 @@ export default class Papers extends React.Component {
         }
       })
     }
-
+    // loop over each func in array and filter so can have combined searching
     let filteredResults = this.state.results
     filterFunctions.forEach( func => filteredResults = filteredResults.filter(func))
 
 
-
+    // if the component is part of a page, generate buttons and stuff
     let buttons = ""
     if(this.props.page !== undefined){
       let pageSize = this.props.pageSize || 10

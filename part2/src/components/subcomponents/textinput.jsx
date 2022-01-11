@@ -3,6 +3,7 @@ import React from 'react'
  * @author: Scott Donaldson 19019810
  */
 export default class TextInput extends React.Component {
+  // Generates a text input field
   render(){
     return(
       <label>

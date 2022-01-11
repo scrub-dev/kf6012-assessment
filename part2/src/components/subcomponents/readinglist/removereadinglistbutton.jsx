@@ -11,7 +11,7 @@ export default class RemoveReadingListButton extends React.Component {
       disabled: false
     }
   }
-
+  // remove paper id from users reading list
   removeFromReadingList = async () => {
     const id = this.props.paperid
 

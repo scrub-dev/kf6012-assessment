@@ -3,6 +3,7 @@ import React from 'react';
  * @author: Scott Donaldson 19019810
  */
 class SearchBox extends React.Component{
+    // Returns a searchbox component
     render(){
         return(
             <label>

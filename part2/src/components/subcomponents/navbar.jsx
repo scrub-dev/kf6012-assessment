@@ -1,11 +1,11 @@
 import React from 'react'
 import pageconfig from '../pages/pageconfig'
 import Login from './login'
-
-export default class Navbar extends React.Component {
 /**
  * @author: Scott Donaldson 19019810
  */
+export default class Navbar extends React.Component {
+  // Generates nav bar from pageconfig options
   render () {
     return (
       <header>

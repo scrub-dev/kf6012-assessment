@@ -4,6 +4,7 @@ import pageconfig from '../pages/pageconfig'
  * @author: Scott Donaldson 19019810
  */
 export default class Footer extends React.Component {
+  // creates a footer
   render () {
     return (
       <footer className='page-footer footer'>

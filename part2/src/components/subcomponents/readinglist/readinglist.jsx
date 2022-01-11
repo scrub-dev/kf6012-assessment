@@ -29,6 +29,7 @@ export default class ReadingList extends React.Component {
   }
 
   async componentDidMount () {
+    // get all papers
     let url = ((config.DEV_MODE) ? config.DEV_BASEPATH : config.BASEPATH) + 'papers'
 
     try{
@@ -40,7 +41,7 @@ export default class ReadingList extends React.Component {
       console.log('Something went wrong ', e)
     }
   }
-
+  // generate pagesize dropdown options
   generatePageSize = (options) => {
     let output = []
     options.forEach( e => {
@@ -51,7 +52,7 @@ export default class ReadingList extends React.Component {
 
   render(){
     const filterFunctions = []
-
+    // filters
     if (this.props.search !== '' && this.props.search !== undefined) {
       filterFunctions.push(paper => {
         return (paper.title.toLowerCase().includes(this.props.search.toLowerCase()) ||
@@ -68,8 +69,11 @@ export default class ReadingList extends React.Component {
         }
       })
     }
+    // loop over filters
     let filteredResults = this.state.results
     filterFunctions.forEach( func => filteredResults = filteredResults.filter(func))
+
+    // generate buttons if part of a page
     let buttons = ""
     if(this.props.page !== undefined){
       let pageSize = this.props.pageSize || 10

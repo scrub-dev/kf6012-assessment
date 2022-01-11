@@ -9,6 +9,7 @@ import SignupPage from './signuppage'
  * @author: Scott Donaldson 19019810
  */
 const pageconfig = {
+  //Pages Array that degines their paths, component to render and if they should be displayed in nav bar or if you need to be authenticated to access them
   pages: (authenticated, authFunc) => {
     return [
       { name: 'home', paths: ['/', 'home'], component: <Homepage authenticated={authenticated}/>, display: true, requiresAuth: false},
@@ -19,9 +20,11 @@ const pageconfig = {
       { name: 'signup', paths: ['signup'], component: <SignupPage authenticated={authenticated} setAuth={authFunc}/>, display: false, requiresAuth: false}
     ]
   },
+  //Changers First Character to upperstring
   uppercaseFirstLetter (string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
   },
+  //Generates Links for Navbar
   generateLinks (authenticated) {
     const output = []
     this.pages(authenticated).forEach((page, i) => {
@@ -32,6 +35,7 @@ const pageconfig = {
     })
     return output
   },
+  //Generates Links as Anchors with Hrefs
   generateATags (authenticated) {
     const output = []
     this.pages(authenticated).forEach((page, i) => {
@@ -42,7 +46,7 @@ const pageconfig = {
     })
     return output
   },
-
+  //Generates Routes for react-router-dom
   generateRoutes (authenticated, authFunc) {
     const output = []
     this.pages(authenticated, authFunc).forEach((page, i) => {

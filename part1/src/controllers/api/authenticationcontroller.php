@@ -21,9 +21,24 @@ class AuthenticationController extends Controller{
             $this->send_method_not_allowed();
         }
 
+        $expired = $this->get_request()->get_parameter("expired");
+
+        if(!is_null($expired)){
+            try{
+                $decoded = JWT::decode($expired, SECRET_KEY, array('HS256'));
+            }catch(\Exception $e){
+                if($e->getMessage() == "Expired token") {
+                    return ["expired" => true];
+                }
+            }
+            return ["expired" => false];
+        }
+
         $email = $this->get_request()->get_parameter("email");
         $password = $this->get_request()->get_parameter("password");
         $create = $this->get_request()->get_parameter("create");
+
+
 
         //Check if email and password are set
         if(!is_null($email) && !is_null($password)){

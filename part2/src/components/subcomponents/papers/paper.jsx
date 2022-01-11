@@ -6,6 +6,8 @@ import RemoveReadingListButton from '../readinglist/removereadinglistbutton'
  * @author: Scott Donaldson 19019810
  */
 export default class Paper extends React.Component {
+  
+  // get all authors of a specific paper and generate a string
   getAuthors = () => {
     let output = []
     this.props.paper.authors.forEach( e => {
@@ -14,6 +16,7 @@ export default class Paper extends React.Component {
     return output.join(", ")
   }
 
+  // change size of grid depending on how many papers are displayed
   generateDynamicSize = () => {
     if(this.props.size === 1 || this.props.size === 0) return {s: 12, m: 12, l: 12}
     else if (this.props.size <= 9) return {s: 12, m: 12, l: 12}
@@ -22,6 +25,7 @@ export default class Paper extends React.Component {
   }
   render () {
     let gds = this.generateDynamicSize()
+    // set the buttons to either add or remove from reading list if user is authenticated
     let rlbutton = ""
     if(this.props.rltype !== undefined && this.props.rltype === 'remove' && this.props.authenticated){
       rlbutton = (<RemoveReadingListButton paperid={this.props.paper.paper_id} rlaction={this.props.rlaction}/>)

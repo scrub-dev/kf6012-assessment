@@ -23,6 +23,31 @@ export default class Login extends React.Component {
     this.handleLogoutClick = this.handleLogoutClick.bind(this)
   }
 
+  async componentDidMount () {
+    // if user is logged in from other page or returning from previous session, keep them logged in
+    if(localStorage.getItem('authToken') !== null){
+      // check if token has expired
+      let url = ((config.DEV_MODE) ? config.DEV_BASEPATH : config.BASEPATH) + 'authenticate'
+
+      let formData = new FormData()
+      formData.append('expired', localStorage.getItem('token'))
+      try{
+        const res = await fetch(url, {
+          method: "POST",
+          headers: new Headers(),
+          body: formData
+        })
+        const data = await res.json()
+        if (data.status !== 200 && data.status !== 401) throw new Error((config.DEV_MODE) ? `API Error: ${data.status} | ${data.message} | ${url}` : 'API Error')
+        if(!data.results.expired){
+          this.props.setAuth(true)
+        }
+      }catch (e) {
+        console.log('Something went wrong ', e)
+      }
+    }
+  }
+
   handleEmail = e => {
     this.setState({email: e.target.value})
   }

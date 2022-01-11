@@ -39,6 +39,7 @@ export default class SignupPage extends React.Component {
   handleSignup = async () => {
     this.setState({output: ""})
 
+    // popup for if one of both fields are blank
     let missingParamModal = (
       <Modal
       actions={[<Button flat modal='close' node='button' onClick={this.clearOutput}>Close</Button>]}
@@ -51,6 +52,7 @@ export default class SignupPage extends React.Component {
     </Modal>
     )
 
+    //pop up for if login is invalid or incorrect
     let incorrectModal = (
       (
         <Modal
@@ -64,7 +66,8 @@ export default class SignupPage extends React.Component {
       </Modal>
       )
     )
-
+    
+    //trys to authenticate user
     let url = ((config.DEV_MODE) ? config.DEV_BASEPATH : config.BASEPATH) + 'authenticate'
 
     let formData = new FormData()

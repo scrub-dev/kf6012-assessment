@@ -31,7 +31,7 @@ export default class Paperspage extends React.Component {
   }
 
   async componentDidMount () {
-
+    // get the awards so can search by dropdown of them
     let url = ((config.DEV_MODE) ? config.DEV_BASEPATH : config.BASEPATH) + 'awards'
     try{
       const res = await fetch(url)
@@ -41,7 +41,7 @@ export default class Paperspage extends React.Component {
     }catch(e){
       console.log('Something went wrong ', e)
     }
-
+    // get the authenticated users reading list
     let rlurl = ((config.DEV_MODE) ? config.DEV_BASEPATH : config.BASEPATH) + 'readinglist'
     let formData = new FormData();
     formData.append('token', localStorage.getItem('authToken'))
@@ -82,7 +82,7 @@ export default class Paperspage extends React.Component {
   }
 
 
-
+  //Change the awards results to a valid array of objects for the Dropdown component
   awardsToOptions = () => {
     const awards = this.state.awards
     let arr = [{name: "All", value: "all"}]

@@ -29,6 +29,7 @@ export default class Paperspage extends React.Component {
   }
 
   async componentDidMount () {
+    // get the awards and their IDs so can make a dropdown to search by them
     let url = ((config.DEV_MODE) ? config.DEV_BASEPATH : config.BASEPATH) + 'awards'
     try{
       const res = await fetch(url)

@@ -13,6 +13,8 @@ export default class Papers extends React.Component {
   }
 
   async componentDidMount () {
+
+    // get papers based on params
     let url = ((config.DEV_MODE) ? config.DEV_BASEPATH : config.BASEPATH) + 'papers'
     if (this.props.random !== undefined && this.props.random) url += '?getrandom'
     else if (this.props.paperid !== undefined) url += `?id=${this.props.paperid}`

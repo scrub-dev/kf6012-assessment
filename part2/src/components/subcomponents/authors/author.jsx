@@ -5,6 +5,8 @@ import Papers from '../papers/papers'
  * @author: Scott Donaldson 19019810
  */
 export default class Author extends React.Component {
+
+  // changes grid size based on how many results are on the page dynamically
   generateDynamicSize = () => {
     if(this.props.size === 1 || this.props.size === 0) return {s: 12, m: 12, l: 12}
     else if (this.props.size <= 9) return {s: 12, m: 12, l: 12}
@@ -12,6 +14,7 @@ export default class Author extends React.Component {
     else return {s: 12, m: 4, l: 4}
   }
 
+  // Changes name from 3 objects to one variable
   parseName = (author) => {
     const f = (author.first_name !== undefined) ? author.first_name : ""
     const m = (author.middle_name !== undefined) ? author.middle_name + " " : " "

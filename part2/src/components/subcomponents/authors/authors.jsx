@@ -13,6 +13,8 @@ export default class Authors extends React.Component {
   }
 
   async componentDidMount () {
+
+    // get all authors or author if ID is set
     let url = ((config.DEV_MODE) ? config.DEV_BASEPATH : config.BASEPATH) + 'authors'
     if(this.props.authorid !== undefined) url += `?id=${this.props.authorid}`
 
@@ -25,7 +27,7 @@ export default class Authors extends React.Component {
       console.log('Something went wrong ', e)
     }
   }
-
+  // dynamically change grid size based on how many results are showing
   generatePageSize = (options) => {
     let output = []
     options.forEach( e => {
@@ -34,6 +36,7 @@ export default class Authors extends React.Component {
     return output
   }
 
+  // generate name to search with as one  variable instead of an object
   parseName = (author) => {
     const f = (author.first_name !== undefined) ? author.first_name : ""
     const m = (author.middle_name !== undefined) ? author.middle_name + " " : " "
@@ -43,17 +46,20 @@ export default class Authors extends React.Component {
   }
 
   render(){
+    // create an array for functions
     const filterFunctions = []
 
+    //if params match, add anon func to array
     if(this.props.search !== undefined && this.props.search !== ''){
       filterFunctions.push(author => {
         return this.parseName(author).toLowerCase().includes(this.props.search.toLowerCase())
       })
     }
-
+    // go over each anon func in array so can combined search parameters
     let filteredResults = this.state.results
     filterFunctions.forEach( func => filteredResults = filteredResults.filter(func))
 
+    // generate buttons if the component is required to render like a page
     let buttons = "" 
     if(this.props.page !== undefined){
       let pageSize = this.props.pageSize || 10

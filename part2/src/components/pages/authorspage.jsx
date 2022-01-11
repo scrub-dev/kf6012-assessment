@@ -27,11 +27,11 @@ export default class Authorpage extends React.Component {
     this.setState({search: e.target.value, page: 1})
   }
 
-  handlePreviousClick = e => {
+  handlePreviousClick = () => {
     this.setState({page: this.state.page - 1})
   }
 
-  handleNextClick = e => {
+  handleNextClick = () => {
     this.setState({page: this.state.page + 1})
   }
   handlePageSizeSelect = e => {

@@ -1,6 +1,8 @@
 import React from 'react'
 import pageconfig from '../pages/pageconfig'
-
+/**
+ * @author: Scott Donaldson 19019810
+ */
 export default class Footer extends React.Component {
   render () {
     return (

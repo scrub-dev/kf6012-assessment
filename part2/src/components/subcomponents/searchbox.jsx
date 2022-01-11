@@ -1,5 +1,7 @@
 import React from 'react';
-
+/**
+ * @author: Scott Donaldson 19019810
+ */
 class SearchBox extends React.Component{
     render(){
         return(

@@ -3,7 +3,9 @@ import pageconfig from '../pages/pageconfig'
 import Login from './login'
 
 export default class Navbar extends React.Component {
-
+/**
+ * @author: Scott Donaldson 19019810
+ */
   render () {
     return (
       <header>

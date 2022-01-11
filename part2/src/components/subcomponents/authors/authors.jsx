@@ -3,7 +3,9 @@ import config from '../../../config'
 import Author from './author'
 import { Row, Button, Col } from 'react-materialize'
 import Dropdown from '../dropdown'
-
+/**
+ * @author: Scott Donaldson 19019810
+ */
 export default class Authors extends React.Component {
   constructor (props){
     super(props)

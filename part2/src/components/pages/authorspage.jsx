@@ -4,6 +4,9 @@ import Footer from '../subcomponents/footer'
 import TextInput from '../subcomponents/textinput'
 import Authors from '../subcomponents/authors/authors'
 
+/**
+ * @author: Scott Donaldson 19019810
+ */
 export default class Authorpage extends React.Component {
   constructor(props){
     super(props)

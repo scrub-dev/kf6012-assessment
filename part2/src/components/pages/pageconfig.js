@@ -5,7 +5,9 @@ import Paperspage from './paperspage'
 import { Link, Route } from 'react-router-dom'
 import ReadingListPage from './readinglistpage'
 import SignupPage from './signuppage'
-
+/**
+ * @author: Scott Donaldson 19019810
+ */
 const pageconfig = {
   pages: (authenticated, authFunc) => {
     return [

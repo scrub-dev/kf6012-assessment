@@ -3,7 +3,9 @@ import config from '../../../config'
 import Paper from './paper'
 import { Row, Button, Col } from 'react-materialize'
 import Dropdown from '../dropdown'
-
+/**
+ * @author: Scott Donaldson 19019810
+ */
 export default class Papers extends React.Component {
   constructor (props) {
     super(props)

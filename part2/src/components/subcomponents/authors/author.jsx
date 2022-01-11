@@ -1,7 +1,9 @@
 import React from 'react'
 import { Modal, Button, Col } from 'react-materialize'
 import Papers from '../papers/papers'
-
+/**
+ * @author: Scott Donaldson 19019810
+ */
 export default class Author extends React.Component {
   generateDynamicSize = () => {
     if(this.props.size === 1 || this.props.size === 0) return {s: 12, m: 12, l: 12}

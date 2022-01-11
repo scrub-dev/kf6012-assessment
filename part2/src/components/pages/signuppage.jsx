@@ -4,7 +4,9 @@ import config from '../../config'
 import { Button, Modal, Row } from 'react-materialize'
 import TextInput from '../subcomponents/textinput'
 import Redirect from '../subcomponents/redirect'
-
+/**
+ * @author: Scott Donaldson 19019810
+ */
 export default class SignupPage extends React.Component {
   constructor(props){
     super(props)

@@ -2,7 +2,9 @@ import React from 'react'
 import {Modal, Button, Col } from 'react-materialize'
 import AddReadingListButton from '../readinglist/addreadinglistbutton'
 import RemoveReadingListButton from '../readinglist/removereadinglistbutton'
-
+/**
+ * @author: Scott Donaldson 19019810
+ */
 export default class Paper extends React.Component {
   getAuthors = () => {
     let output = []

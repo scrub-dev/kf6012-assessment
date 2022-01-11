@@ -6,7 +6,9 @@ import TextInput from '../subcomponents/textinput'
 import { Row, Col } from 'react-materialize'
 import Redirect from '../subcomponents/redirect'
 import ReadingList from '../subcomponents/readinglist/readinglist'
-
+/**
+ * @author: Scott Donaldson 19019810
+ */
 export default class Paperspage extends React.Component {
   constructor(props){
     super(props)

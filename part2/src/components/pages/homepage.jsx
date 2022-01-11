@@ -2,7 +2,9 @@ import React from 'react'
 import Footer from '../subcomponents/footer'
 import bookshelf from '../../assets/bookshelf.jpg'
 import Papers from '../subcomponents/papers/papers'
-
+/**
+ * @author: Scott Donaldson 19019810
+ */
 export default class Homepage extends React.Component {
   render () {
     return (

@@ -5,7 +5,9 @@ import config from '../../config'
 import TextInput from '../subcomponents/textinput'
 import { Row, Col } from 'react-materialize'
 import Papers from '../subcomponents/papers/papers'
-
+/**
+ * @author: Scott Donaldson 19019810
+ */
 export default class Paperspage extends React.Component {
   constructor(props){
     super(props)

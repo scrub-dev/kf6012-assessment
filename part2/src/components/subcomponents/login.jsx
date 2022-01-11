@@ -4,7 +4,9 @@ import TextInput from './textinput'
 import config from '../../config'
 import { useNavigate } from 'react-router-dom'
 import SignupButton from './signupbutton'
-
+/**
+ * @author: Scott Donaldson 19019810
+ */
 export default class Login extends React.Component {
   constructor(props){
     super(props)

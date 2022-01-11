@@ -1,6 +1,8 @@
 import React from 'react'
 import Footer from '../subcomponents/footer'
-
+/**
+ * @author: Scott Donaldson 19019810
+ */
 export default class Errorpage extends React.Component {
   render () {
     return (

@@ -1,7 +1,9 @@
 import React from 'react'
 import { Button } from 'react-materialize'
 import config from '../../../config'
-
+/**
+ * @author: Scott Donaldson 19019810
+ */
 export default class AddReadingListButton extends React.Component {
   constructor(props){
     super(props)

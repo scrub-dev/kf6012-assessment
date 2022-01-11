@@ -28,6 +28,7 @@ export default class RemoveReadingListButton extends React.Component {
       let data = await res.json()
       if(data.status === 200 || data.status === 204){
         this.setState({disabled: true})
+        this.props.rlaction(this.props.paperid)
       }
     }catch(e){
       console.log("Something went wrong", e)
@@ -36,6 +37,6 @@ export default class RemoveReadingListButton extends React.Component {
   }
 
   render(){
-    return(<Button node="button" disabled={this.state.disabled} onClick={this.removeFromReadingList}>Remove to Reading List</Button>)
+    return(<Button node="button" disabled={this.state.disabled} onClick={this.removeFromReadingList} modal='close'>Remove to Reading List</Button>)
   }
 }

@@ -10,6 +10,12 @@ export default class ReadingList extends React.Component {
     this.state = {
       results: []
     }
+
+    this.handleRemoved = this.handleRemoved.bind(this)
+  }
+
+  handleRemoved = paperid => {
+    this.setState({results: this.state.results.filter(paper => paper.paper_id !== paperid)})
   }
 
   getReadingList() {
@@ -97,7 +103,7 @@ export default class ReadingList extends React.Component {
       {buttons}
       <Row>
         {noData}
-        {filteredResults.map((paper, i) => <Paper key={i + paper.title} paper={paper} size={filteredResults.length} authenticated={this.props.authenticated} rltype='remove'/>)}
+        {filteredResults.map((paper, i) => <Paper key={i + paper.title} paper={paper} size={filteredResults.length} authenticated={this.props.authenticated} rltype='remove' rlaction={this.handleRemoved}/>)}
       </Row>
     </div>
     )

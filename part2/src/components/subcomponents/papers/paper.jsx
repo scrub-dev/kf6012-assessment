@@ -20,10 +20,9 @@ export default class Paper extends React.Component {
   }
   render () {
     let gds = this.generateDynamicSize()
-
     let rlbutton = ""
     if(this.props.rltype !== undefined && this.props.rltype === 'remove' && this.props.authenticated){
-      rlbutton = (<RemoveReadingListButton paperid={this.props.paper.paper_id}/>)
+      rlbutton = (<RemoveReadingListButton paperid={this.props.paper.paper_id} rlaction={this.props.rlaction}/>)
     }
     if(this.props.rltype !== undefined && this.props.rltype === 'add' && this.props.authenticated){
       rlbutton = (<AddReadingListButton paperid={this.props.paper.paper_id}/>)

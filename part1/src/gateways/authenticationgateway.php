@@ -26,9 +26,9 @@ class AuthenticationGateway extends Gateway{
     }
 
     public function does_email_exist($email){
-        $sql = "SELECT EXISTS (SELECT email FROM user WHERE email = :x LIMIT 1)";
+        $sql = "SELECT EXISTS (SELECT email FROM user WHERE email = :x LIMIT 1) as res";
         $params = [":x" => $email];
         $res = $this->get_database()->execute_sql($sql, $params);
-        return ($res[0] === 1)? true : false;
+        return ($res[0]['res'] == 1);
     }
 }

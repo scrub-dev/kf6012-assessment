@@ -96,6 +96,7 @@ export default class Paperspage extends React.Component {
         <main className='wrapper'>
           <div className='container'>
             <h1 className='accent-underline'>Reading List</h1>
+            <span>To add to reading list, navigate to Papers and Authors and add from there.</span>
             <Row>
               <Col s={12} m={6} l={6}>
                 <TextInput label='Search' textValue={this.state.search} handleOnChange={this.handleSearch} placeholder='Title or Abstract'/>

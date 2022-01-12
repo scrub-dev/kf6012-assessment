@@ -48,6 +48,10 @@ main {
   margin-right: 0.2em;
 }
 
+.ow-my-head {
+  margin-top: 2em;
+}
+
 .slightly-more-margin {
   margin-left: 0.4em;
   margin-right: 0.4em;
@@ -120,4 +124,24 @@ label {
   top: 20%;
   left: 35%;
   transform: translateY(-50%, -50%);
+}
+.show-on-large{
+  display: none !important;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 1110px){
+  .show-on-mobile{
+    display:block !important;
+  }
+}
+.show-on-mobile{
+  display:none !important;
+}
+@media only screen and (max-width: 1110px){
+  .hide-on-mobile {
+    display: none;
+  }
+  .show-on-mobile{
+    display:block !important;
+  }
 }

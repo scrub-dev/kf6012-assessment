@@ -143,16 +143,16 @@ export default class Login extends React.Component {
       output = (
         <Row>
           {this.state.output}
-        <Col s={4} m={4} l={4}>
+        <Col s={12} m={4} l={4}>
           <TextInput placeholder='email' textValue={this.state.email} handleOnChange={this.handleEmail}/>
         </Col>
-        <Col s={4} m={4} l={4}>
+        <Col s={12} m={4} l={4}>
           <TextInput placeholder='password' textValue={this.state.password} handleOnChange={this.handlePassword}/>
         </Col>
-        <Col s={2} m={2} l={2}>
+        <Col s={12} m={2} l={2}>
           <Button onClick={this.handleLoginClick}>Login</Button>
         </Col>
-        <Col s={2} m={2} l={2}>
+        <Col s={12} m={2} l={2}>
           <SignupButton/>
         </Col>
       </Row>

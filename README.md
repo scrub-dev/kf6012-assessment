@@ -15,8 +15,6 @@ Designing Interactive Systems conference
 ## Additional Information:
 [![Standard-Js](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](https://standardjs.com/)
 
-Due to external factors dictating time spent on the assessment, the styling of the website is not as responsive as I would have liked as a result, the website currently supports screens of 1920*1080 or >=24". Just Zoom out if there are some elements overflowing into other elements.
-
 ### Extra Modules Used in Part2
 [StandardJS](https://standardjs.com) to make the project code more readable and follow an industry standard.
 
@@ -26,8 +24,20 @@ Due to external factors dictating time spent on the assessment, the styling of t
 
 ### Alternitive Approaches
 
+#### Part 1
+
+awards endpoint is added just as a simple way to get a map of award id to award name
+
+the papers enpoint returns an array of authors as part of its responses for any paper responding
+
+there are a number of helper functiosn in the gateways to ensure that valid IDs are given and within ranges / exist
+
+#### Part 2
+
 pageconfig.js exists as a single internal API for generating Routes and Displaying Page links for the front end development. Instead of having to pass around lots of states and props or trying to setup contexts for global state management.
 
 config.js exists in part2 as the same concept to it being used in part1 so I can handle changing from development mode to deployment mode easily and staging for deployment is minimal hassle
 
-Using the readinglist is slightly differently implemented to how it is in the workshops for viewinglist. Instead of having all papers displayed again and using checkboxes, once the user is authorised, the can navigate to the papers and authors pages and if they are logged in they will have the option to add the paper to their reading list when they select one to view from either of those pages. It works similar for removing a paper, navigate to reading list and find the paper you want to remove, click on it and press the "remove from reading" list button, this should update the list. If a paper is already on the reading list but they view it in the papers or authors page, it will be greyed out.
+Reading List uses the paper and authors pages to add papers to reading list, a button will show to add it to the list when there is an authenticated user
+
+There was an attempt to use the standardJS method to keep the code concise, This was successful all from it throwing a few errors around using ES6 Arrow Functions as Class Methods, these were delt with where StandardJS had issues.

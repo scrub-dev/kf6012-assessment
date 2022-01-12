@@ -7,7 +7,7 @@ export default class Footer extends React.Component {
   // creates a footer
   render () {
     return (
-      <footer className='page-footer footer'>
+      <footer className='page-footer footer hide-on-mobile'>
         <div className='container'>
           <div className='row'>
             <div className='col l6 s12'>

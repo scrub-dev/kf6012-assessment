@@ -79,7 +79,7 @@ export default class Authors extends React.Component {
               <Button onClick={this.props.handleNextClick} disabled={this.props.page >= Math.ceil(filteredResults.length / pageSize)}>Next</Button>
             </Col>
             <Col className='right'>
-              <Dropdown label='Papers per Page' selectValue={this.props.pageSize} handleSelect={this.props.handlePageSize} options={this.generatePageSize(pageSizeOptions)}/>
+              <Dropdown label='Authors per Page' selectValue={this.props.pageSize} handleSelect={this.props.handlePageSize} options={this.generatePageSize(pageSizeOptions)}/>
             </Col>
             <Col>
               <p>Page {page} of {Math.ceil(filteredResults.length / pageSize)}</p>

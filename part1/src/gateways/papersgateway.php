@@ -7,7 +7,7 @@ use Src\Gateways\Gateway as Gateway;
  * @author: Scott Donaldson 19019810
  */
 class PapersGateway extends Gateway{
-    private $sql = "SELECT paper.paper_id, paper.title, paper.abstract, paper.doi
+    private $sql = "SELECT paper.paper_id, paper.title, paper.abstract, paper.doi, paper.video
     FROM paper ";
 
     public function __construct(){

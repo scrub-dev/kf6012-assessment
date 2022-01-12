@@ -23,6 +23,24 @@ export default class Paper extends React.Component {
     else if (this.props.size <= 18) return {s: 6, m: 6, l: 6}
     else return {s: 12, m: 4, l: 4}
   }
+
+  videoButton = () => {
+    let redirect = () => {
+      window.open(this.props.paper.video)
+    }
+    return (
+      <Button className='left btn-flat' onClick={redirect}>Video</Button>
+    )
+  }
+  doiButton = () => {
+    let redirect = () => {
+      window.open(this.props.paper.doi)
+    }
+    return (
+      <Button className='left btn-flat' onClick={redirect}>DOI</Button>
+    )
+  }
+
   render () {
     let gds = this.generateDynamicSize()
     // set the buttons to either add or remove from reading list if user is authenticated
@@ -38,7 +56,7 @@ export default class Paper extends React.Component {
       <Col s={gds.s} m={gds.m} l={gds.l}>
         <Modal
           actions={[
-            rlbutton, <Button flat modal="close" node="button">Close</Button>
+            rlbutton, <Button flat modal="close" node="button">Close</Button>, this.videoButton(), this.doiButton()
           ]}
           bottomSheet={false}
           fixedFooter={false}

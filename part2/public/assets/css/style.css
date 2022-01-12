@@ -129,6 +129,15 @@ label {
   display: none !important;
 }
 
+.button-spacing {
+  margin-left: 4em;
+}
+
+.btn-flat:hover {
+  color: white !important;
+  background-color: #4db6ac !important;
+}
+
 @media only screen and (min-width: 0px) and (max-width: 1110px){
   .show-on-mobile{
     display:block !important;

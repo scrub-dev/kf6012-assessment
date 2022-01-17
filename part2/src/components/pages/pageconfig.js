@@ -46,7 +46,7 @@ const pageconfig = {
     const output = []
     this.pages(authenticated).forEach((page, i) => {
       const x = (
-        <li key={i + page.name}><a href={page.name} className='white-text'>{this.uppercaseFirstLetter(page.name)}</a></li>
+        <li key={i + page.name}><a href={"/" + page.name.replace(/\s/g, '')} className='white-text'>{this.uppercaseFirstLetter(page.name)}</a></li>
       )
       if (page.display  || (page.requiresAuth && authenticated)) output.push(x)
     })
@@ -68,7 +68,7 @@ const pageconfig = {
       const x = (
         <Row key={page.name}>
           <Col s={12} m={12} l={12} key={page.name}>
-            <RedirectButton location={page.name} key={page.name} name={this.uppercaseFirstLetter(page.name)}/>
+            <RedirectButton location={"/" + page.name.replace(/\s/g, '')} key={page.name} name={this.uppercaseFirstLetter(page.name)}/>
           </Col>
         </Row>
       )
